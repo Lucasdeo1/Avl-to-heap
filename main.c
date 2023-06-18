@@ -22,55 +22,46 @@ typedef struct {
 
 void liberaArvore(arvore* a); // --------------------------------libera memoria da AVL
 arvore* criaArvore(char* palavra);//-----------------------------Cria aVL
-arvore* encontrarMin(arvore* a);//------------------------------encontra menor nó chave da avl
+arvore* encontrarMin(arvore* a);//------------------------------encontra menor nÃ³ chave da avl
 int altura(arvore* a);//----------------------------------------contabilizia a altura da avl
 int fb(arvore* a);//--------------------------------------------retorna o fato balnceamento
-arvore* rotadir(arvore* a);//-----------------------------------realiza a rotação a direita
-arvore* rotaesq(arvore* a);//------------------------------------realiza a rotação a esquerda
+arvore* rotadir(arvore* a);//-----------------------------------realiza a rotaÃ§Ã£o a direita
+arvore* rotaesq(arvore* a);//------------------------------------realiza a rotaÃ§Ã£o a esquerda
 arvore* insereNaArvore(arvore* a, char* palavra);//---------------insere dados na avl
 void emordem(arvore* a);//-----------------------------------------imprime dados da AVL em ordem
 void tiraospontos(char* palavra);//--------------------------------tira os caracteres especiais das palavras e passa para minusculas todas elas
-arvore* lerEinsereNaAVL(arvore* a, int* cont);//------------------abre arquivo, os lê e em seguida os insere a cada palavra na avl, usando a função acima para tirar os pontos
+arvore* lerEinsereNaAVL(arvore* a, int* cont);//------------------abre arquivo, os lÃª e em seguida os insere a cada palavra na avl, usando a funÃ§Ã£o acima para tirar os pontos
 
 
 filap* criafila(int tam); //----------------------------------------cria fila com a quantidade de palavras com tam alocacado
 void liberaFila(filap*f);//-----------------------------------------libera memoria da fila
-int raiz(int i);//--------------------------------------------------retorna a posição raiz na fila de prioridade
-int filhosesq(int i);//---------------------------------------------retorna a posição do filho esquerdo na fila de prioridade
-int filhosdir(int i);//---------------------------------------------retorna a posição do filho direito na fila de prioridade
-void troca(filap* a, filap* b);//-----------------------------------troca os elementos de posição na fila de prioridade.
-void sobe(filap* f, int index);//-----------------------------------corrige o heap máximo subindo um elemento na fila de prioridade.
-void desce(filap* f, int tam, int index);//-------------------------corrige o heap máximo descendo um elemento na fila de prioridade.
+int raiz(int i);//--------------------------------------------------retorna a posiÃ§Ã£o raiz na fila de prioridade
+int filhosesq(int i);//---------------------------------------------retorna a posiÃ§Ã£o do filho esquerdo na fila de prioridade
+int filhosdir(int i);//---------------------------------------------retorna a posiÃ§Ã£o do filho direito na fila de prioridade
+void troca(filap* a, filap* b);//-----------------------------------troca os elementos de posiÃ§Ã£o na fila de prioridade.
+void sobe(filap* f, int index);//-----------------------------------corrige o heap mÃ¡ximo subindo um elemento na fila de prioridade.
+void desce(filap* f, int tam, int index);//-------------------------corrige o heap mÃ¡ximo descendo um elemento na fila de prioridade.
 void enfila(filap* f, int* tam, int frequencia, char* palavra);//---insere um elemento na fila de prioridade.
-void preencher(arvore* a, filap* f, int* tam);//---------------------preenche a fila de prioridade com as palavras e suas frequências da árvore AVL.
+void preencher(arvore* a, filap* f, int* tam);//---------------------preenche a fila de prioridade com as palavras e suas frequÃªncias da Ã¡rvore AVL.
 void desenfila(filap* f, int* tam, int index);//---------------------emove o elemento de maior raiz da fila 
 void imprimirfila(filap*f,int tam);
-int buscarPalavraNaFila(filap* f, int tam, char* palavra) {
-	int i;
-    for (i = 0; i < tam; i++) {
-        if (strcmp(f[i].palavra, palavra) == 0) {
-            return i; // Retorna o índice da palavra encontrada na fila
-        }
-    }
-    return -1; // Retorna -1 se a palavra não for encontrada na fila
-}
-
+int buscarPalavraNaFila(filap* f, int tam, char* palavra);
 
 int main() {
     char palavra[100];
     arvore* a = criaArvore(palavra);
     int index,cont = 0;
-    a = lerEinsereNaAVL(a, &cont); //------------------------------------------avl recebe a função que é para ler e receber dados do arquivo
+    a = lerEinsereNaAVL(a, &cont); //------------------------------------------avl recebe a funÃ§Ã£o que Ã© para ler e receber dados do arquivo
     //printf("Palavras inseridas na arvore AVL com sucesso!\n");
     //emordem(a);
     printf("quantidade de palavras na AVL: %d\n", cont);
-    printf("\n");//------------------------------------------------------------só para dar uma distancia na tela do usuario
+    printf("\n");//------------------------------------------------------------sÃ³ para dar uma distancia na tela do usuario
     filap* f = criafila(cont);
     int tam = 0;
-    preencher(a, f, &tam);//---------------------------------------------------preencher a fila de prioridade com as palavras e suas frequências da árvore AVL.
+    preencher(a, f, &tam);//---------------------------------------------------preencher a fila de prioridade com as palavras e suas frequÃªncias da Ã¡rvore AVL.
     printf("quantidade de palavras na fila: %d\n",tam);
 	//imprimirfila(f,tam);
-	printf("raiz: '%s' - repete = %d \n", f[0].palavra, f[0].frequencia);//-------sabendo que o maior elemento será a posição 0 basta imprimir fila da posição 0
+	printf("raiz: '%s' - repete = %d \n", f[0].palavra, f[0].frequencia);//-------sabendo que o maior elemento serÃ¡ a posiÃ§Ã£o 0 basta imprimir fila da posiÃ§Ã£o 0
     desenfila(f, &tam, index);
     printf("Nova raiz: '%s' - repete = %d \n", f[0].palavra,f[0].frequencia);
 	char palavraDesejada[100];
@@ -79,10 +70,10 @@ int main() {
 	
 	int pos = buscarPalavraNaFila(f, tam, palavraDesejada);
 	if (pos != -1) {
-	    printf("A palavra '%s' foi encontrada na posição %d da fila.\n", palavraDesejada, pos);
-	    // Faça o que desejar com o elemento encontrado
+	    printf("A palavra '%s' foi encontrada na posiÃ§Ã£o %d da fila.\n", palavraDesejada, pos);
+	    // FaÃ§a o que desejar com o elemento encontrado
 	} else {
-	    printf("A palavra '%s' não foi encontrada na fila.\n", palavraDesejada);
+	    printf("A palavra '%s' nÃ£o foi encontrada na fila.\n", palavraDesejada);
 	}
     liberaFila(f);
     liberaArvore(a);
@@ -311,6 +302,17 @@ void imprimirfila(filap*f,int tam){
 		printf("'%s' repete = %d\n", f[i].palavra, f[i].frequencia);
 	}
 }
+
+int buscarPalavraNaFila(filap* f, int tam, char* palavra) {
+	int i;
+    for (i = 0; i < tam; i++) {
+        if (strcmp(f[i].palavra, palavra) == 0) {
+            return i; // Retorna o Ã­ndice da palavra encontrada na fila
+        }
+    }
+    return -1; // Retorna -1 se a palavra nÃ£o for encontrada na fila
+}
+
 
 
 
